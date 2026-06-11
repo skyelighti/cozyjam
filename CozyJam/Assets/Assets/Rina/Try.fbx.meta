@@ -3,7 +3,47 @@ guid: d2c147c33605945479ca32cc4e189eb7
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color_Creme
+    second: {fileID: 2100000, guid: 56db6c90ae46d44149bb4864d0bfc253, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color_pestachos
+    second: {fileID: 2100000, guid: 63c546cd6240e450eb24a7986dd3800e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color_rabbit
+    second: {fileID: 2100000, guid: 8d35d49433cf744e081cc6790a465a1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: color_green
+    second: {fileID: 2100000, guid: e318f4d895ec14fef9a7215c6cf70e96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: color_orange
+    second: {fileID: 2100000, guid: dd0e879f0499e4cefae167a1f226c4f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: color_plumb
+    second: {fileID: 2100000, guid: 9178635cadda7433ea78daa9c774fda5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: color_red
+    second: {fileID: 2100000, guid: 93ecd943f597942a6b9f8b7158b64be4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor
+    second: {fileID: 2100000, guid: b92f1111dc9274c2eb2d15c6e9fd23cc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
