@@ -38,6 +38,7 @@ public class PlayerController :  MonoBehaviour
             inputActions.Player.Move.performed -= OnMove;
             inputActions.Player.Move.canceled -= OnMove;
             inputActions.Player.Jump.performed -= OnJump;
+            inputActions.Player.Interact.performed -= OnInteract;
 
             GameManager.Instance.OnActionMapChanged -= Map_OnActionMapChanged;
         }
@@ -50,6 +51,8 @@ public class PlayerController :  MonoBehaviour
         inputActions.Player.Jump.performed += OnJump;
         inputActions.Player.Move.performed += OnMove;
         inputActions.Player.Move.canceled  += OnMove;  
+
+        inputActions.Player.Interact.performed += OnInteract;
         
     }
     void OnMove(InputAction.CallbackContext value)
@@ -86,5 +89,55 @@ public class PlayerController :  MonoBehaviour
     void Update()
     {
         
+    }
+    void OnInteract(InputAction.CallbackContext value)
+    {
+        Debug.Log("Fired");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f);
+        List<Collider> interactables = new List<Collider>();
+        float smallest_dist = float.MaxValue;;
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
+            {
+                //send a raycast in the direction of the interactable, if the first result returned is the interactable, then interact with it
+                Interactable interactable = collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    Vector3 direction = (interactable.transform.position - transform.position).normalized;
+                    RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, 3f);
+
+                    foreach (RaycastHit hit in hits)
+                    {
+                        if (hit.collider.gameObject == interactable.gameObject)
+                        {
+                            float dist = Vector3.Distance(interactable.transform.position, transform.position);
+                            if (dist < smallest_dist)
+                            {
+                                smallest_dist = dist;
+                                interactables.Insert(0, hit.collider);
+                            }
+                            else
+                            {
+                                interactables.Add(hit.collider);
+                            }
+                            break;
+                        }
+                        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+                        {
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+        if (interactables.Count > 0)
+        {
+            interactables[0].gameObject.GetComponent<Interactable>().Interact();
+        }
+        return;
     }
 }
