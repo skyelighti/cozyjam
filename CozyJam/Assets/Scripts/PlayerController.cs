@@ -8,10 +8,18 @@ public class PlayerController :  MonoBehaviour
 {
     private InputSystem_Actions inputActions;
     private CharacterController cc;
+    [Header("Movement Settings")]
     [SerializeField] float gravity = -10f;
     [SerializeField] float jumpHeight = 2f;
 
     [SerializeField] float speed;
+
+    [Header("Ability Settings")]
+    [SerializeField] float interactRad = 3f;
+    [SerializeField] float pickupRad = 3f;
+    private PickUp currItem = null;
+    public Transform itemholder {get; private set;}
+    bool canPickup;
     Vector2 input = Vector2.zero;
     private Animator animator;
 
@@ -39,6 +47,7 @@ public class PlayerController :  MonoBehaviour
             inputActions.Player.Move.canceled -= OnMove;
             inputActions.Player.Jump.performed -= OnJump;
             inputActions.Player.Interact.performed -= OnInteract;
+            inputActions.Player.Pickup.performed -= OnPickup;
 
             GameManager.Instance.OnActionMapChanged -= Map_OnActionMapChanged;
         }
@@ -53,6 +62,7 @@ public class PlayerController :  MonoBehaviour
         inputActions.Player.Move.canceled  += OnMove;  
 
         inputActions.Player.Interact.performed += OnInteract;
+        inputActions.Player.Pickup.performed += OnPickup;
         
     }
     void OnMove(InputAction.CallbackContext value)
@@ -90,12 +100,78 @@ public class PlayerController :  MonoBehaviour
     {
         
     }
+    void OnPickup(InputAction.CallbackContext value)
+    {
+        if(canPickup)
+        {
+            Debug.Log("Pickup");
+            Collider[] colliders = Physics.OverlapSphere(transform.position, pickupRad);
+            List<Collider> pickupitems = new List<Collider>();
+            float smallest_dist = float.MaxValue;
+            foreach (Collider collider in colliders)
+            {
+                //send a raycast in the direction of the interactable, if the first result returned is the interactable, then interact with it
+                PickUp pickup = collider.GetComponent<PickUp>();
+                if (pickup != null)
+                {
+                    Vector3 direction = (pickup.transform.position - transform.position).normalized;
+                    RaycastHit[] hits = Physics.RaycastAll(transform.position, direction, pickupRad);
+
+                    foreach (RaycastHit hit in hits)
+                    {
+                        if (hit.collider.gameObject == pickup.gameObject)
+                        {
+                            float dist = Vector3.Distance(pickup.transform.position, transform.position);
+                            if (dist < smallest_dist)
+                            {
+                                smallest_dist = dist;
+                                pickupitems.Insert(0, hit.collider);
+                            }
+                            else
+                            {
+                                pickupitems.Add(hit.collider);
+                            }
+                            break;
+                        }
+                        if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+                        {
+                            break;
+                        }
+                    }
+
+                }
+
+            }
+            if (pickupitems.Count > 0)
+            {
+                pickupitems[0].gameObject.GetComponent<PickUp>().Pickup(itemholder);
+
+                canPickup = false;
+                currItem = pickupitems[0].gameObject.GetComponent<PickUp>();
+                currItem.OnForceDrop += HandleForceDrop;
+            }
+            return;
+        }
+        else
+        {
+            currItem.Drop();
+            canPickup = true;
+            currItem.OnForceDrop -= HandleForceDrop;
+        }
+    }
+    
+    void HandleForceDrop()
+    {
+        currItem.OnForceDrop -= HandleForceDrop;
+        canPickup = true;
+        currItem = null;
+    }
     void OnInteract(InputAction.CallbackContext value)
     {
-        Debug.Log("Fired");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 3f);
+        Debug.Log("Interacted");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, interactRad);
         List<Collider> interactables = new List<Collider>();
-        float smallest_dist = float.MaxValue;;
+        float smallest_dist = float.MaxValue;
         foreach (Collider collider in colliders)
         {
             if (collider.gameObject.layer == LayerMask.NameToLayer("Interactable"))
