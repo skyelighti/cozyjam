@@ -21,9 +21,9 @@ public class ButtonController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        Input.multiTouchEnabled = false;
     }
     public void SwitchAbility(Ability newAbility)
     {
@@ -31,16 +31,19 @@ public class ButtonController : MonoBehaviour
     }
     public void SwapRennovate(Button button)
     {
+        Debug.Log("Rennovate");
         SwitchAbility(Ability.Rennovate);
         button.Select();
     }
     public void SwapMove(Button button)
     {
+        Debug.Log("Move");
         SwitchAbility(Ability.Move);
         button.Select();
     }
     public void SwapRestore(Button button)
     {
+        Debug.Log("Restore");
         SwitchAbility(Ability.Restore);
         button.Select();
     }

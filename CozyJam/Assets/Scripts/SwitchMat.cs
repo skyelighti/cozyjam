@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class SwitchMat : Interactable
+public class SwitchMat : MonoBehaviour, IPointerDownHandler
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Material[] newmats;
@@ -13,17 +14,20 @@ public class SwitchMat : Interactable
     {
         matRenderer = GetComponent<Renderer>();
     }
-    public override void Interact()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        ogmats = matRenderer.materials;
-        for (int i = 0; i < ogmats.Length; i++)
+        if (ButtonController.Instance.ability == Ability.Restore)
         {
-            if (i < newmats.Length && newmats[i] != null)
+            ogmats = matRenderer.materials;
+            for (int i = 0; i < ogmats.Length; i++)
             {
-                ogmats[i] = newmats[i];
+                if (i < newmats.Length && newmats[i] != null)
+                {
+                    ogmats[i] = newmats[i];
+                }
             }
-        }
 
-        matRenderer.materials = newmats;
+            matRenderer.materials = newmats;
+        }
     }
 }

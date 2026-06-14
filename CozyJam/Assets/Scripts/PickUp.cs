@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using System;
 
-public class PickUp : MonoBehaviour
+public class PickUp : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     //if player presses q, picks up object, if player presses q again, puts the object down.
     //this is the corresponding part on the item, as it should store start position and the radius from the start position it is allowed to move from
@@ -12,6 +13,7 @@ public class PickUp : MonoBehaviour
     public float dropDist;
     public event Action OnForceDrop;
     public bool isHeld;
+    float Zpos;
     Rigidbody rb;
     //radius of distance before the object snaps to ogPos
     void Start()
@@ -29,6 +31,34 @@ public class PickUp : MonoBehaviour
         {
             Drop(true);
             OnForceDrop?.Invoke();
+        }
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (ButtonController.Instance.ability == Ability.Move)
+        {
+            Debug.Log("this should begin drag");
+            Pickup();
+            Zpos = Camera.main.WorldToScreenPoint(transform.position).z;
+        }
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (ButtonController.Instance.ability == Ability.Move)
+        {
+            //math calculations
+            Vector3 newPos = new Vector3(eventData.position.x,eventData.position.y, Zpos);
+            newPos = Camera.main.ScreenToWorldPoint(newPos);
+            transform.position = newPos;
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (ButtonController.Instance.ability == Ability.Move)
+        {
+            Drop();
         }
     }
     public void Pickup()
