@@ -31,16 +31,12 @@ public class PickUp : MonoBehaviour
             OnForceDrop?.Invoke();
         }
     }
-    public void Pickup(Transform t)
+    public void Pickup()
     {
-        transform.SetParent(t);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
         isHeld = true;
     }
     public void Drop(bool anchor = false)
     {
-        transform.SetParent(null);
         isHeld = false;
         if(!anchor){
             //check if it is in the acceptable dropping area? otherwise or if its an anchor

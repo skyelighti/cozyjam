@@ -4,15 +4,9 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
-public class PlayerController :  MonoBehaviour
+public class PlayerController :  MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private InputSystem_Actions inputActions;
-    private CharacterController cc;
-    [Header("Movement Settings")]
-    [SerializeField] float gravity = -10f;
-    [SerializeField] float jumpHeight = 2f;
-
-    [SerializeField] float speed;
 
     [Header("Ability Settings")]
     [SerializeField] float interactRad = 3f;
@@ -20,78 +14,51 @@ public class PlayerController :  MonoBehaviour
     private PickUp currItem = null;
     public Transform itemholder {get; private set;}
     bool canPickup;
-    Vector2 input = Vector2.zero;
-    private Animator animator;
-
     private Vector3 velocity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.OnActionMapChanged += Map_OnActionMapChanged;
-        inputActions = GameManager.Instance.playerInputActions;
-        UpdateActionMap();
-        cc = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
         
     }
-    void Map_OnActionMapChanged(object sender, System.EventArgs e)
+
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //reset player velocity to 0 when changing action maps
-        input = Vector2.zero;
-    }
-    void OnDestroy()
-    {
-        if (inputActions != null)
+
+        if (ButtonController.Instance.ability == Ability.Restore)
         {
-            inputActions.Player.Move.performed -= OnMove;
-            inputActions.Player.Move.canceled -= OnMove;
-            inputActions.Player.Jump.performed -= OnJump;
-            inputActions.Player.Interact.performed -= OnInteract;
-            inputActions.Player.Pickup.performed -= OnPickup;
-
-            GameManager.Instance.OnActionMapChanged -= Map_OnActionMapChanged;
+                SwitchMat smat = eventData.pointerCurrentRaycast.gameObject.GetComponent<SwitchMat>();
+                if(smat!= null)
+                {
+                    smat.Interact();
+                }   
         }
-    }
-    public void UpdateActionMap()
-    {
-        inputActions.Player.Move.performed -= OnMove;
-        inputActions.Player.Move.canceled  -= OnMove;
-        
-        inputActions.Player.Jump.performed += OnJump;
-        inputActions.Player.Move.performed += OnMove;
-        inputActions.Player.Move.canceled  += OnMove;  
 
-        inputActions.Player.Interact.performed += OnInteract;
-        inputActions.Player.Pickup.performed += OnPickup;
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        PickUp currdrag = eventData.pointerPress.GetComponent<PickUp>();
+        if(ButtonController.Instance.ability == Ability.Move && currdrag != null)
+        {
+            currdrag.Pickup();
+        }
+        return;
+    }
+    public void OnDrag(PointerEventData eventData)
+    {
+        PickUp currdrag = eventData.pointerPress.GetComponent<PickUp>();
+        if(ButtonController.Instance.ability == Ability.Move && currdrag != null)
+        {
+            currdrag.transform.position = Camera.main.ScreenToWorldPoint(eventData.position);
+        }
+        return;
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
         
-    }
-    void OnMove(InputAction.CallbackContext value)
-    {
-        input = value.ReadValue<Vector2>().normalized;
-    }
-    void OnJump(InputAction.CallbackContext value)
-    {
-        if (cc.isGrounded)
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
     void FixedUpdate()
     {
-        if (cc.isGrounded && velocity.y < 0)
-            velocity.y = -2f;
-        velocity.y += gravity * Time.fixedDeltaTime;
 
-
-        Vector3 move = new Vector3(input.x, 0, input.y) * speed * Time.fixedDeltaTime;
-        move.y = velocity.y * Time.fixedDeltaTime;
-        cc.Move(move);
-
-        bool isWalking = input.x != 0 || input.y != 0;
-        animator.SetBool("iswalking", isWalking);
-        if (isWalking)
-        {
-            animator.SetFloat("x", input.x);
-            animator.SetFloat("z", input.y);
-        }
     }
 
 
@@ -100,7 +67,7 @@ public class PlayerController :  MonoBehaviour
     {
         
     }
-    void OnPickup(InputAction.CallbackContext value)
+    void OnPickup()
     {
         if(canPickup)
         {
@@ -144,7 +111,7 @@ public class PlayerController :  MonoBehaviour
             }
             if (pickupitems.Count > 0)
             {
-                pickupitems[0].gameObject.GetComponent<PickUp>().Pickup(itemholder);
+                pickupitems[0].gameObject.GetComponent<PickUp>().Pickup();
 
                 canPickup = false;
                 currItem = pickupitems[0].gameObject.GetComponent<PickUp>();
@@ -166,7 +133,7 @@ public class PlayerController :  MonoBehaviour
         canPickup = true;
         currItem = null;
     }
-    void OnInteract(InputAction.CallbackContext value)
+    void OnInteract()
     {
         Debug.Log("Interacted");
         Collider[] colliders = Physics.OverlapSphere(transform.position, interactRad);

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-public enum ActionMap { Player, UI, Dialouge}
+public enum ActionMap { UI, Dialouge}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance  { get; private set; }
