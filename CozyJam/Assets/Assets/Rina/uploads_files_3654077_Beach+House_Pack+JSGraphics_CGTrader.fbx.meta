@@ -3,7 +3,17 @@ guid: c16b92e2ad3954ccb9b183b560e8c354
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beachhouse _ wall 1
+    second: {fileID: 2100000, guid: 2cfb87aad3ba9422681c38caf380ef37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beachhouse _ wall 3
+    second: {fileID: 2100000, guid: c8c641deea4b34624bf01ba5d58c117e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
