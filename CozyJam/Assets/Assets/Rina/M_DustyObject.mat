@@ -33,7 +33,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Dust_Normal
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -129,7 +129,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Dust_Switch: 1.56
+    - _Dust_Switch: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -153,7 +153,7 @@ Material:
     - _BaseColor: {r: 137.00003, g: 134.00003, b: 92.00002, a: 1}
     - _Color: {r: 137.00006, g: 134.00006, b: 92.000046, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Object_Color: {r: 0.8490566, g: 0.500623, b: 0.500623, a: 1}
+    - _Object_Color: {r: 1, g: 0.25943398, b: 0.25943398, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
