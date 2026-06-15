@@ -96,7 +96,7 @@ public class DialougeManager : MonoBehaviour
         if (temptxt == null)
         {
             DialougeUI.SetActive(false);
-            GameManager.Instance.SwapMap(ActionMap.Player);
+            GameManager.Instance.SwapMap(ActionMap.UI);
             GameManager.Instance.Unpause();
             return;
         }
@@ -138,7 +138,7 @@ public class DialougeManager : MonoBehaviour
             isTyping = false;
         }
         DialougeUI.SetActive(false);
-        GameManager.Instance.SwapMap(ActionMap.Player); 
+        GameManager.Instance.SwapMap(ActionMap.UI); 
         GameManager.Instance.Unpause();
     }
 }
