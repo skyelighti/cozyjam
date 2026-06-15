@@ -15,44 +15,25 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.94853765, z: 0.9431244, w: 0}
+    m_Value: {x: 0.92302483, y: 1, z: 0.9307574, w: 0.16282226}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.8493085, y: 1, z: 0.8600749, w: 0}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 0.98045707, y: 1, z: 0.82759947, w: 0}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
   shadowsEnd:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.42
   highlightsStart:
     m_OverrideState: 1
-    m_Value: 0.55
+    m_Value: 0.54
   highlightsEnd:
     m_OverrideState: 1
-    m_Value: 1
---- !u!114 &-5295360051554150934
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
-  m_Name: PaniniProjection
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.PaniniProjection
-  active: 1
-  distance:
-    m_OverrideState: 1
-    m_Value: 0
-  cropToFit:
-    m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.97
 --- !u!114 &-2536351631227482172
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -68,13 +49,13 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.5
   response:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.74
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -99,7 +80,7 @@ MonoBehaviour:
     m_Value: 0
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 1, g: 0.9327693, b: 0.9198113, a: 1}
   hueShift:
     m_OverrideState: 1
     m_Value: 0
@@ -124,7 +105,6 @@ MonoBehaviour:
   - {fileID: -2536351631227482172}
   - {fileID: -6602318093831872756}
   - {fileID: -917347508408212956}
-  - {fileID: -5295360051554150934}
 --- !u!114 &2038056786967661595
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -140,31 +120,31 @@ MonoBehaviour:
   active: 1
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 107
   redOutGreenIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 13
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 9
   greenOutRedIn:
     m_OverrideState: 1
     m_Value: 0
   greenOutGreenIn:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 87
   greenOutBlueIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 13
   blueOutRedIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 8
   blueOutGreenIn:
     m_OverrideState: 1
     m_Value: 0
   blueOutBlueIn:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 96
 --- !u!114 &2204024556943926828
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -180,4 +160,4 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.11
