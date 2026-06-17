@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76aac9164df89494da111a8cd8d3a642, type: 3}
+  m_Name: EE0
+  m_EditorClassIdentifier: Assembly-CSharp::DialougeInfo
+  dialouge:
+  - Name: evil ghost
+    dialouge: wow im so evil
+    sprite: {fileID: 0}
+    Bg: {fileID: 0}
+  - Name: evil ghost
+    dialouge: ggz. is this jam cooked :(
+    sprite: {fileID: 0}
+    Bg: {fileID: 0}
+  advancesProgress: 0
+  ID: evilghost1

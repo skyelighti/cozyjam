@@ -7,6 +7,7 @@ public class DialougeInfo : ScriptableObject
     public bool advancesProgress;
     int indx = 0;
     public string ID;
+    [SerializeField] private ScriptableObject task;
     //this is for keeping stuff synced
     public string GetDialouge()
     {
@@ -35,5 +36,14 @@ public class DialougeInfo : ScriptableObject
     public void ResetIndex()
     {
         indx = 0;
+    }    
+    public ITask GetTask()
+    {
+        if(task is ITask)
+        {
+            ITask t = (ITask)task;
+            return t;
+        }
+        return null;
     }
 }

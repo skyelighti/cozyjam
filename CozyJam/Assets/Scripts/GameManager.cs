@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance  { get; private set; }
     public InputSystem_Actions playerInputActions;
     public event EventHandler OnActionMapChanged;
+    public Ghost EvilGhost;
+    public Ghost GoodGhost;
     //set player velocity to 0 when action map is changed
 
     //Singleton pattern

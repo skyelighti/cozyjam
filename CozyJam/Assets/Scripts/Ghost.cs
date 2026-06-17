@@ -16,7 +16,7 @@ public class Ghost : MonoBehaviour, IPointerDownHandler
         ghost.transform.rotation = newPos.rotation;
     }
   
-    void UpdateIndex()
+    public void UpdateIndex()
     {
         indx++;
         dialougeInfo = ghostPhases[indx].dinfo;

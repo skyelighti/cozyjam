@@ -98,6 +98,10 @@ public class DialougeManager : MonoBehaviour
             DialougeUI.SetActive(false);
             GameManager.Instance.SwapMap(ActionMap.UI);
             GameManager.Instance.Unpause();
+            if(dinfo.GetTask() != null)
+            {
+                TaskManager.Instance.AddTask(dinfo.GetTask());
+            }
             return;
         }
         else
@@ -140,5 +144,9 @@ public class DialougeManager : MonoBehaviour
         DialougeUI.SetActive(false);
         GameManager.Instance.SwapMap(ActionMap.UI); 
         GameManager.Instance.Unpause();
+        if(dinfo.GetTask() != null)
+        {
+            TaskManager.Instance.AddTask(dinfo.GetTask());
+        }
     }
 }
