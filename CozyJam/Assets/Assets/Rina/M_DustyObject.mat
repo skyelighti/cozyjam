@@ -62,11 +62,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Dust_Color:
-        m_Texture: {fileID: 2800000, guid: 562a8a4355ac14885b0a144469135a4a, type: 3}
+        m_Texture: {fileID: 2800000, guid: c1bd1a8fd80074685ab4c8d456913eb3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Dust_Normal:
-        m_Texture: {fileID: 2800000, guid: 56b7d144f3ea04b0aa64c88138307889, type: 3}
+        m_Texture: {fileID: 2800000, guid: d8a9874a90dd64cefb7bae038afffc03, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -153,7 +153,7 @@ Material:
     - _BaseColor: {r: 137.00003, g: 134.00003, b: 92.00002, a: 1}
     - _Color: {r: 137.00006, g: 134.00006, b: 92.000046, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Object_Color: {r: 1, g: 0.25943398, b: 0.25943398, a: 1}
+    - _Object_Color: {r: 0.2588235, g: 0.86714554, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
