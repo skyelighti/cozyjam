@@ -19,16 +19,6 @@ public class DialougeInfo : ScriptableObject
         string name = indx < dialouge.Length ? dialouge[indx].Name : null;
         return name;
     }
-    public Sprite GetIcon()
-    {
-        Sprite icon = indx < dialouge.Length ? dialouge[indx].sprite : null;
-        return icon;
-    }
-    public Sprite GetBackground()
-    {
-        Sprite bg = indx < dialouge.Length ? dialouge[indx].Bg : null;
-        return bg;
-    }
     public void IncreaseIndx()
     {
         indx++;

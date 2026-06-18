@@ -66,18 +66,9 @@ public class DialougeManager : MonoBehaviour
     }
     void UpdateDUI()
     {
-        if (dinfo.GetIcon() != null)
-        {
-            Icon.sprite = dinfo.GetIcon();
-        }
         if (dinfo.GetName() != null)
         {
             NameText.text = dinfo.GetName();
-        }
-        if (dinfo.GetBackground() != null)
-        {
-            Background.enabled = true;
-            Background.sprite = dinfo.GetBackground();
         }
         else
         { 

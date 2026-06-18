@@ -17,6 +17,9 @@
         public bool canMove;
         private Plane dragPlane;
         Rigidbody rb;
+        [SerializeField] string ID;
+        private bool hasBeenPlaced = false;
+        public static event Action<string> OnMoved;
         //radius of distance before the object snaps to ogPos
         void Start()
         {
@@ -116,7 +119,7 @@
                 if(areas.Count> 0)
                 {
                     PlacementZone zone = areas[0].GetComponent<PlacementZone>();
-                    
+
                     Vector3 localOffset = new Vector3(zone.itemPlacement.x, 0, zone.itemPlacement.y);
                     Vector3 worldSnappingPoint = zone.transform.TransformPoint(localOffset);
 
@@ -131,6 +134,12 @@
                     }
                     transform.position = new Vector3(newX, zone.surfaceY + pivotOffset, newZ);
                     ogPos = transform.position;
+
+                    if (!hasBeenPlaced)
+                    {
+                        hasBeenPlaced = true;
+                        OnMoved?.Invoke(ID);
+                    }
                     return;
                 }
             }
