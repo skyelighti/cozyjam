@@ -10,16 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76aac9164df89494da111a8cd8d3a642, type: 3}
-  m_Name: testing 2
+  m_Name: GG0
   m_EditorClassIdentifier: Assembly-CSharp::DialougeInfo
   dialouge:
-  - Name: 'evil ghost d2 '
-    dialouge: 'lawddd '
+  - Name: ???
+    dialouge: Hi! Welcome to this house!
     sprite: {fileID: 0}
     Bg: {fileID: 0}
-  - Name: 'evil ghost d2 '
-    dialouge: we dawg through this :(
+  - Name: ???
+    dialouge: Would you mind cleaning some of this stuff up for me?
+    sprite: {fileID: 0}
+    Bg: {fileID: 0}
+  - Name: ???
+    dialouge: Try repairing the window frame!
+    sprite: {fileID: 0}
+    Bg: {fileID: 0}
+  - Name: ???
+    dialouge: You should have 3 tools avalible to you. Try clicking through those,
+      maybe one will work!
     sprite: {fileID: 0}
     Bg: {fileID: 0}
   advancesProgress: 0
   ID: 
+  task: {fileID: 11400000, guid: a90009bab15b14da1bd71b2b22d483fb, type: 2}

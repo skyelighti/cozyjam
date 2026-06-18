@@ -13,6 +13,7 @@ public class DialougeManager : MonoBehaviour
     [SerializeField] Image Background;
     [SerializeField] TMP_Text DialougeText;
     private InputSystem_Actions inputActions;
+
     private DialougeInfo dinfo;
     bool isTyping;
     string temptxt;
@@ -58,24 +59,16 @@ public class DialougeManager : MonoBehaviour
         dinfo = info;
         DialougeUI.SetActive(true);
         GameManager.Instance.SwapMap(ActionMap.Dialouge);
+        ButtonController.Instance.Toggle();
         dinfo.ResetIndex();
         UpdateDialouge();
 
     }
     void UpdateDUI()
     {
-        if (dinfo.GetIcon() != null)
-        {
-            Icon.sprite = dinfo.GetIcon();
-        }
         if (dinfo.GetName() != null)
         {
             NameText.text = dinfo.GetName();
-        }
-        if (dinfo.GetBackground() != null)
-        {
-            Background.enabled = true;
-            Background.sprite = dinfo.GetBackground();
         }
         else
         { 
@@ -97,7 +90,12 @@ public class DialougeManager : MonoBehaviour
         {
             DialougeUI.SetActive(false);
             GameManager.Instance.SwapMap(ActionMap.UI);
+            ButtonController.Instance.Toggle();
             GameManager.Instance.Unpause();
+            if(dinfo.GetTask() != null)
+            {
+                TaskManager.Instance.AddTask(dinfo.GetTask());
+            }
             return;
         }
         else
@@ -139,6 +137,11 @@ public class DialougeManager : MonoBehaviour
         }
         DialougeUI.SetActive(false);
         GameManager.Instance.SwapMap(ActionMap.UI); 
+        ButtonController.Instance.Toggle();
         GameManager.Instance.Unpause();
+        if(dinfo.GetTask() != null)
+        {
+            TaskManager.Instance.AddTask(dinfo.GetTask());
+        }
     }
 }

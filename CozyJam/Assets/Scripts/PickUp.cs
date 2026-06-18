@@ -14,7 +14,12 @@
         public event Action OnForceDrop;
         public bool isHeld;
         float Zpos;
+        public bool canMove;
+        private Plane dragPlane;
         Rigidbody rb;
+        [SerializeField] string ID;
+        private bool hasBeenPlaced = false;
+        public static event Action<string> OnMoved;
         //radius of distance before the object snaps to ogPos
         void Start()
         {
@@ -22,6 +27,7 @@
             ogPos = transform.position;
             rb.isKinematic = true;
             isHeld = false;
+            canMove = true;
         }
 
         // Update is called once per frame
@@ -36,28 +42,32 @@
         public void OnBeginDrag(PointerEventData eventData)
         {
             
-            if (ButtonController.Instance.ability == Ability.Move)
+            if (ButtonController.Instance.ability == Ability.Move && canMove)
             {
                 Debug.Log("this should begin drag");
                 Pickup();
-                Zpos = Camera.main.WorldToScreenPoint(transform.position).z;
+
+                dragPlane = new Plane(Vector3.up, transform.position);
             }
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (ButtonController.Instance.ability == Ability.Move)
+            if (ButtonController.Instance.ability == Ability.Move & canMove)
             {
+                Ray ray = Camera.main.ScreenPointToRay(eventData.position);
+
                 //math calculations
-                Vector3 newPos = new Vector3(eventData.position.x,eventData.position.y, Zpos);
-                newPos = Camera.main.ScreenToWorldPoint(newPos);
-                transform.position = newPos;
+                if (dragPlane.Raycast(ray, out float enter))
+                {
+                    transform.position = ray.GetPoint(enter);
+                }
             }
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (ButtonController.Instance.ability == Ability.Move)
+            if (ButtonController.Instance.ability == Ability.Move && canMove)
             {
                 Drop();
             }
@@ -108,23 +118,37 @@
                 }
                 if(areas.Count> 0)
                 {
-                    float newX = areas[0].GetComponent<PlacementZone>().itemPlacement.x;
-                    float newZ = areas[0].GetComponent<PlacementZone>().itemPlacement.y;
+                    PlacementZone zone = areas[0].GetComponent<PlacementZone>();
+
+                    Vector3 localOffset = new Vector3(zone.itemPlacement.x, 0, zone.itemPlacement.y);
+                    Vector3 worldSnappingPoint = zone.transform.TransformPoint(localOffset);
+
+                    float newX = worldSnappingPoint.x;
+                    float newZ = worldSnappingPoint.z;
 
                     Collider myCollider = GetComponent<Collider>();
-                    float newY = 0f;
+                    float pivotOffset = 0f;
                     if (myCollider != null)
                     {
-                        newY = myCollider.bounds.extents.y;
+                        pivotOffset = transform.position.y - myCollider.bounds.min.y;
                     }
-
-                    transform.position = new Vector3(newX, areas[0].GetComponent<PlacementZone>().surfaceY + newY, newZ);
+                    transform.position = new Vector3(newX, zone.surfaceY + pivotOffset, newZ);
                     ogPos = transform.position;
+
+                    if (!hasBeenPlaced)
+                    {
+                        hasBeenPlaced = true;
+                        OnMoved?.Invoke(ID);
+                    }
                     return;
                 }
             }
             transform.position = ogPos;   
             //dropped at an invalid position?
 
+        }
+        void DisableMovement()
+        {
+            canMove = false;
         }
     }
