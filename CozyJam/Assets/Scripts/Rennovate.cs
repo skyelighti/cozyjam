@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class Rennovate : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -9,7 +10,8 @@ public class Rennovate : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     bool isRennovating = false;
     [SerializeField] GameObject oldObj;
     [SerializeField] GameObject newObj;
-    private bool isAlreadyRenovated = false;
+    public static event Action<string> OnRennovate;
+    [SerializeField] string ID;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -50,17 +52,9 @@ public class Rennovate : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     void RennovateObj()
     {
-        isAlreadyRenovated = !isAlreadyRenovated;
         isRennovating = false;
-        if (isAlreadyRenovated)
-        {
-            oldObj.SetActive(false);
-            newObj.SetActive(true);
-        }
-        else
-        {
-            oldObj.SetActive(true);
-            newObj.SetActive(false);
-        }
+        oldObj.SetActive(false);
+        newObj.SetActive(true);
+        OnRennovate?.Invoke(ID);
     }
 }

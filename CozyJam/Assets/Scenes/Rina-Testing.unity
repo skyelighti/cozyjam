@@ -1837,6 +1837,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3635394545232797807, guid: c0ffe71a3fa984ba2bf5e956a4cdcaa9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -362
+      objectReference: {fileID: 0}
     - target: {fileID: 5607051789304602978, guid: c0ffe71a3fa984ba2bf5e956a4cdcaa9, type: 3}
       propertyPath: m_Name
       value: DialougeCanvas
@@ -1924,6 +1928,10 @@ PrefabInstance:
     - target: {fileID: 7786747629856621105, guid: c0ffe71a3fa984ba2bf5e956a4cdcaa9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738290993160637074, guid: c0ffe71a3fa984ba2bf5e956a4cdcaa9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2120,6 +2128,7 @@ MonoBehaviour:
   timer: 2
   oldObj: {fileID: 5551645226440964001}
   newObj: {fileID: 618771397}
+  ID: ToyBucket
 --- !u!4 &1269989785
 Transform:
   m_ObjectHideFlags: 0
@@ -2581,6 +2590,7 @@ MonoBehaviour:
   timer: 2
   oldObj: {fileID: 2723207317364293126}
   newObj: {fileID: 48923803}
+  ID: 
 --- !u!4 &1732170775
 Transform:
   m_ObjectHideFlags: 0
@@ -15259,6 +15269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwitchMat
   newmats:
   - {fileID: 7770318624900243041, guid: 82c166fb60c3e4313bd9fc2754765f28, type: 3}
+  ID: 
 --- !u!54 &4974111634742371121
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16471,6 +16482,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2004113635115768906, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c65150833bdbd4493bf6a99a64678ef9, type: 3}
+    - target: {fileID: 2004113635115768906, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115096800495307473, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 16015c09a9e324ddba848d03584664c3, type: 3}
+    - target: {fileID: 2115096800495307473, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2428422140992048556, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2357aa0e3a5164de39c991f6958380e7, type: 3}
+    - target: {fileID: 2428422140992048556, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2496036908217171285, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16601,7 +16636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8749185530541797612, guid: 0abc933343d2741229c5ac821c3e10be, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: ButtonCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

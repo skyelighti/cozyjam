@@ -13,6 +13,7 @@ public class DialougeManager : MonoBehaviour
     [SerializeField] Image Background;
     [SerializeField] TMP_Text DialougeText;
     private InputSystem_Actions inputActions;
+
     private DialougeInfo dinfo;
     bool isTyping;
     string temptxt;
@@ -58,6 +59,7 @@ public class DialougeManager : MonoBehaviour
         dinfo = info;
         DialougeUI.SetActive(true);
         GameManager.Instance.SwapMap(ActionMap.Dialouge);
+        ButtonController.Instance.Toggle();
         dinfo.ResetIndex();
         UpdateDialouge();
 
@@ -97,6 +99,7 @@ public class DialougeManager : MonoBehaviour
         {
             DialougeUI.SetActive(false);
             GameManager.Instance.SwapMap(ActionMap.UI);
+            ButtonController.Instance.Toggle();
             GameManager.Instance.Unpause();
             if(dinfo.GetTask() != null)
             {
@@ -143,6 +146,7 @@ public class DialougeManager : MonoBehaviour
         }
         DialougeUI.SetActive(false);
         GameManager.Instance.SwapMap(ActionMap.UI); 
+        ButtonController.Instance.Toggle();
         GameManager.Instance.Unpause();
         if(dinfo.GetTask() != null)
         {

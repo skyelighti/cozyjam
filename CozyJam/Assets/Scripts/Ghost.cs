@@ -19,11 +19,16 @@ public class Ghost : MonoBehaviour, IPointerDownHandler
     public void UpdateIndex()
     {
         indx++;
-        dialougeInfo = ghostPhases[indx].dinfo;
-        newPos = ghostPhases[indx].appearLocation;
-        ghost.transform.position = newPos.position;
-        ghost.transform.rotation = newPos.rotation;
-        ghost.SetActive(true);
+        if(indx >= ghostPhases.Length)
+        {
+            indx++;
+            dialougeInfo = ghostPhases[indx].dinfo;
+            newPos = ghostPhases[indx].appearLocation;
+            ghost.transform.position = newPos.position;
+            ghost.transform.rotation = newPos.rotation;
+            ghost.SetActive(true);
+        }
+        //what should happen if a ghost finished it's dialouge?
     }
     //call this when triggering next ghost dialouge
 
