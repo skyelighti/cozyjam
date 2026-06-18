@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Restore Task", menuName = "Quests/Restore Task")]
 public class RestoreTask : ScriptableObject, ITask
@@ -6,6 +7,7 @@ public class RestoreTask : ScriptableObject, ITask
     [SerializeField] private string taskName;
     [SerializeField] private string description;
     [SerializeField] private int requiredRenovations;
+    [SerializeField] List<string> reqRennovationList; 
     private int currentRenovations = 0;
     private TaskState state = TaskState.Locked;
 
@@ -17,20 +19,22 @@ public class RestoreTask : ScriptableObject, ITask
         state = TaskState.Active;
         currentRenovations = 0;
         Debug.Log($"New Task Started: {TaskName}");
+        SwitchMat.OnMatCleaned += ObjectRenovated;
     }
 
     public void CompleteTask()
     {
         state = TaskState.Completed;
         Debug.Log($"Task Completed: {TaskName}!");
+        SwitchMat.OnMatCleaned -= ObjectRenovated;
         GameManager.Instance.GoodGhost.UpdateIndex();
     }
 
-    public void ObjectRenovated()
+    public void ObjectRenovated(string ID)
     {
         if (state != TaskState.Active) return;
-
-        currentRenovations++;
+        if(reqRennovationList.Count == 0 || reqRennovationList.Contains(ID))
+            currentRenovations++;
         Debug.Log($"Progress: {currentRenovations} / {requiredRenovations}");
 
         if (currentRenovations >= requiredRenovations)

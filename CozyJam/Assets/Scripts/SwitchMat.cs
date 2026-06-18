@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using UnityEngine.EventSystems;
 
 public class SwitchMat : MonoBehaviour, IPointerDownHandler
@@ -7,6 +8,8 @@ public class SwitchMat : MonoBehaviour, IPointerDownHandler
     [SerializeField] Material[] newmats;
     Material[] ogmats;
     Renderer matRenderer;
+    [SerializeField] string ID;
+    public static event Action<string> OnMatCleaned;
 
 
     // Update is called once per frame
@@ -26,7 +29,7 @@ public class SwitchMat : MonoBehaviour, IPointerDownHandler
                     ogmats[i] = newmats[i];
                 }
             }
-
+            OnMatCleaned?.Invoke(ID);
             matRenderer.materials = newmats;
         }
     }
