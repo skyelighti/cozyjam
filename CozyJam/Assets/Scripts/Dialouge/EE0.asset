@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: EE0
   m_EditorClassIdentifier: Assembly-CSharp::DialougeInfo
   dialouge:
-  - Name: evil ghost
-    dialouge: wow im so evil
+  - Name: ???
+    dialouge: You see that large blue picture?
     sprite: {fileID: 0}
     Bg: {fileID: 0}
-  - Name: evil ghost
-    dialouge: ggz. is this jam cooked :(
+  - Name: ???
+    dialouge: We dont need it.
+    sprite: {fileID: 0}
+    Bg: {fileID: 0}
+  - Name: ???
+    dialouge: Bring it to me.
     sprite: {fileID: 0}
     Bg: {fileID: 0}
   advancesProgress: 0
   ID: evilghost1
+  task: {fileID: 11400000, guid: dea46931eca054e7297cd0801902aaa5, type: 2}

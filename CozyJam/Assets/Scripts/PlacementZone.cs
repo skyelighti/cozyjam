@@ -7,7 +7,6 @@ public class PlacementZone : MonoBehaviour, IDropHandler
     public Vector2 itemPlacement;
     public float surfaceY;
     public bool isGhost = false;      
-    public bool isGoodGhost = false;
 
     public void OnDrop(PointerEventData eventData)
     {

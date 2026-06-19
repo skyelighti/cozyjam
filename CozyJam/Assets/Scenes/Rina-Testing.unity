@@ -953,8 +953,8 @@ MonoBehaviour:
   anchorDist: 10
   dropDist: 5
   isHeld: 0
-  canMove: 0
-  ID: 
+  canMove: 1
+  ID: Picture
 --- !u!4 &445621568
 Transform:
   m_ObjectHideFlags: 0
@@ -1459,6 +1459,7 @@ MonoBehaviour:
   canPlace: 1
   itemPlacement: {x: 0, y: 0}
   surfaceY: 0
+  isGhost: 0
 --- !u!4 &777484624
 Transform:
   m_ObjectHideFlags: 0
@@ -1552,7 +1553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ghost
   ghostPhases:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f0cdd50bb46d547ed882a64536c7af7a, type: 2}
   - {fileID: 0}
   ghost: {fileID: 5542207124584434536}
 --- !u!4 &950370382
@@ -2111,8 +2112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ghost
   ghostPhases:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f84bfb6a532ff4149ab26a06b0ce93c3, type: 2}
+  - {fileID: 11400000, guid: 71865741b115e4b319fcb0be53936d8b, type: 2}
   ghost: {fileID: 3033561503261670707}
 --- !u!4 &1217746053
 Transform:
@@ -2625,7 +2626,7 @@ MonoBehaviour:
   timer: 2
   oldObj: {fileID: 2723207317364293126}
   newObj: {fileID: 48923803}
-  ID: 
+  ID: Picture
 --- !u!4 &1732170775
 Transform:
   m_ObjectHideFlags: 0
@@ -17097,6 +17098,7 @@ GameObject:
   - component: {fileID: 4963012363528324757}
   - component: {fileID: 5542207124584434538}
   - component: {fileID: 5542207124584434537}
+  - component: {fileID: 5542207124584434539}
   m_Layer: 0
   m_Name: badghost
   m_TagString: Untagged
@@ -17120,10 +17122,10 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4394420077881190621, guid: b260c32674eb34e459d947d0854c0663, type: 3}
 --- !u!54 &5542207124584434538
@@ -17153,6 +17155,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5542207124584434539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5542207124584434536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9086edd57f4b4918bda0b7f08202e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlacementZone
+  canPlace: 1
+  itemPlacement: {x: 0, y: 0}
+  surfaceY: 0
+  isGhost: 1
 --- !u!1 &5551645226440964001
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 public class RennovateTask : ScriptableObject, ITask
 {
     [SerializeField] private string taskName;
-    [SerializeField] private string description;
     [SerializeField] private int requiredRenovations;
     [SerializeField] List<string> reqRennovationList; 
     [SerializeField] int goodpoints = 0;
@@ -15,7 +14,6 @@ public class RennovateTask : ScriptableObject, ITask
     private TaskState state = TaskState.Locked;
 
     public string TaskName => taskName;
-    public string Description => description;
     public TaskState State => state;
     public int goodPoints => goodpoints;
     public int badPoints => badpoints;

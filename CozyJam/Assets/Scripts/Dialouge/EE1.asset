@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: EE1
   m_EditorClassIdentifier: Assembly-CSharp::DialougeInfo
   dialouge:
-  - Name: 'evil ghost d2 '
-    dialouge: 'lawddd '
+  - Name: ???
+    dialouge: ....
     sprite: {fileID: 0}
     Bg: {fileID: 0}
-  - Name: 'evil ghost d2 '
-    dialouge: we dawg through this :(
+  - Name: ???
+    dialouge: don't listen to yellow, bring me that toy box
     sprite: {fileID: 0}
     Bg: {fileID: 0}
   advancesProgress: 0
   ID: evilghost1
+  task: {fileID: 0}

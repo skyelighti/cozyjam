@@ -16,9 +16,8 @@ public class Ghost : MonoBehaviour, IPointerDownHandler
     public void UpdateIndex()
     {
         indx++;
-        if(indx >= ghostPhases.Length)
+        if(indx < ghostPhases.Length)
         {
-            indx++;
             dialougeInfo = ghostPhases[indx];
         }
         //what should happen if a ghost finished it's dialouge?
