@@ -70,10 +70,6 @@ public class DialougeManager : MonoBehaviour
         {
             NameText.text = dinfo.GetName();
         }
-        else
-        { 
-            Background.enabled = false;
-        }
     }
     //called on click
     public void UpdateDialouge()

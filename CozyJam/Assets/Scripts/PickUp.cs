@@ -120,6 +120,14 @@
                 {
                     PlacementZone zone = areas[0].GetComponent<PlacementZone>();
 
+
+                    if (zone.isGhost)
+                    {
+                        Destroy(gameObject); 
+                        TaskManager.OnItemDestroyed?.Invoke(ID);
+                        return; 
+                    }
+
                     Vector3 localOffset = new Vector3(zone.itemPlacement.x, 0, zone.itemPlacement.y);
                     Vector3 worldSnappingPoint = zone.transform.TransformPoint(localOffset);
 

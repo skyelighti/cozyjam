@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnActionMapChanged;
     public Ghost EvilGhost;
     public Ghost GoodGhost;
+    int goodP;
+    int badP;
     //set player velocity to 0 when action map is changed
 
     //Singleton pattern
@@ -40,9 +42,13 @@ public class GameManager : MonoBehaviour
         OnActionMapChanged?.Invoke(this, EventArgs.Empty);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void addGP(int points)
     {
-        
+        goodP += points;
+    }
+    public void addBP(int points)
+    {
+        badP += points;
     }
 
     // Update is called once per frame
