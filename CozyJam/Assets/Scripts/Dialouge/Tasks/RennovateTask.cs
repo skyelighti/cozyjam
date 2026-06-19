@@ -9,12 +9,16 @@ public class RennovateTask : ScriptableObject, ITask
     [SerializeField] private string description;
     [SerializeField] private int requiredRenovations;
     [SerializeField] List<string> reqRennovationList; 
+    [SerializeField] int goodpoints = 0;
+    [SerializeField] int badpoints = 0;
     private int currentRenovations = 0;
     private TaskState state = TaskState.Locked;
 
     public string TaskName => taskName;
     public string Description => description;
     public TaskState State => state;
+    public int goodPoints => goodpoints;
+    public int badPoints => badpoints;
     public void StartTask()
     {
         state = TaskState.Active;
@@ -29,6 +33,8 @@ public class RennovateTask : ScriptableObject, ITask
         Debug.Log($"Task Completed: {TaskName}!");
         Rennovate.OnRennovate -= ObjectRenovated;
         GameManager.Instance.GoodGhost.UpdateIndex();
+        GameManager.Instance.addBP(badPoints);
+        GameManager.Instance.addGP(goodPoints);
     }
 
     public void ObjectRenovated(string ID)
